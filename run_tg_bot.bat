@@ -1,0 +1,3 @@
+SET APIKEY="683989153:AAFplDb83gWdBPS0c0OLmK9GX4tZw4U9Cjc"
+
+python telegram_bot.py
