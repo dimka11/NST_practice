@@ -1,2 +1,2 @@
-# NST_practice
+# NST practice
 Учебная практика в магистратуре ФКН
