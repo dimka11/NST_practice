@@ -32,7 +32,6 @@ def load_img(path_to_img):
     img = tf.io.decode_image(img, channels=3)
     img = tf.image.convert_image_dtype(img, tf.float32)
     img = img[tf.newaxis, :]
-
     return img
 
 
@@ -61,7 +60,7 @@ def get_images(content_path, style_path):
 
 
 def run_style_predict(preprocessed_style_image):
-    interpreter = tf.lite.Interpreter(model_path=style_predict_path)
+    interpreter = tf.lite.Interpreter(model_path=style_predict_path,  num_threads=4)
 
     interpreter.allocate_tensors()
     input_details = interpreter.get_input_details()
@@ -75,7 +74,7 @@ def run_style_predict(preprocessed_style_image):
     return style_bottleneck
 
 
-def run_style_transform(style_bottleneck, preprocessed_content_image):
+def run_style_transform(style_bottleneck, preprocessed_content_image, num_threads=4):
     interpreter = tf.lite.Interpreter(model_path=style_transform_path)
 
     input_details = interpreter.get_input_details()
@@ -92,7 +91,7 @@ def run_style_transform(style_bottleneck, preprocessed_content_image):
     return stylized_image
 
 
-def make_style_transfer(content_image_path, style_image_path, content_blending_ratio=0.75,
+def make_style_transfer(content_image_path, style_image_path, content_blending_ratio=0.1,
                         path_save_final_img="./pics/final_image.jpg"):
     content, style = get_images(content_image_path, style_image_path)
     style_bottleneck_content = run_style_predict(preprocess_image(content, 256))

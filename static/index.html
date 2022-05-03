@@ -7,18 +7,23 @@
 </head>
 <body>
     <div class="container">
-        <h1>File Upload</h1>
+        <h1>Style transfer</h1>
+        <p class="white"> Загрузите 2 изображения (контент и стиль)</p>
         <form id='form'>
             <div class="input-group">
-                <label for='name'>Your name</label>
-                <input name='name' id='name' placeholder="Enter your name" />
+                <label for='name'>Unique ID</label>
+                <input name='name' id='name' placeholder="Unique ID" />
             </div>
             <div class="input-group">
-                <label for='files'>Select files</label>
+                <label for='files' class="custom-file-upload">Загрузите файлы</label>
                 <input id='files' type="file" multiple>
+                <div id="filenames"></div>
             </div>
-            <button class="submit-btn" type='submit'>Upload</button>
+            <button class="submit-btn" type='submit'>Загрузить</button>
         </form>
+    </div>
+    <div class="message">
+        <p class="white" id="waiting_message"></p>
     </div>
     <div class="image_container">
         <img id="final_img" src="" alt="">

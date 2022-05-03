@@ -1,3 +1,5 @@
+import os.path
+
 from fastapi import FastAPI, File, UploadFile, Form
 from typing import Optional, List
 from fastapi.responses import FileResponse, HTMLResponse
@@ -34,10 +36,10 @@ def check_file():
     return {"status": "File not ready"}
 
 
-@app.get("/downloadfile/")
-def download_file():
-    file_path = 'uploads/final_image.jpg'
-    make_style_transfer('uploads/content.jpg', 'uploads/style.jpg', 0.75, 'uploads/final_image.jpg')
+@app.get("/downloadfile/{name}")
+def download_file(name):
+    file_path = f'uploads/{name}/final_image.jpg'
+    make_style_transfer(f'uploads/{name}/content.jpg', f'uploads/{name}/style.jpg', 0.75, f'uploads/{name}/final_image.jpg')
     return FileResponse(path=file_path, filename=file_path, media_type='image/jpg')
 
 
@@ -59,8 +61,13 @@ async def read_items():
     """
 
 
-def save_file(filename, data):
-    with open('uploads/'+filename, 'wb') as f:
+def save_file(name, filename, data):
+    if not os.path.isdir('uploads'):
+        os.mkdir("uploads")
+    if not os.path.isdir(f'uploads/{name}'):
+        os.mkdir(f'uploads/{name}')
+
+    with open(f'uploads/{name}/'+filename, 'wb') as f:
         f.write(data)
 
 
@@ -71,9 +78,9 @@ async def upload(name: str = Form(...), files: List[UploadFile] = File(...)):
         contents = await file.read()
         file_name = file.filename
         if idx == 0:
-            save_file("content.jpg", contents)
+            save_file(name, "content.jpg", contents)
         else:
-            save_file("style.jpg", contents)
+            save_file(name, "style.jpg", contents)
 
     return {"Uploaded Filenames": [file.filename for file in files]}
 

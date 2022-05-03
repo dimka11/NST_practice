@@ -8,8 +8,14 @@ body {
 .container {
     max-width: 500px;
     margin: 60px auto;
+    margin-bottom: 0px;
 }
 .container h1 {
+    text-align: center;
+    color: white;
+}
+
+.white {
     text-align: center;
     color: white;
 }
@@ -48,13 +54,34 @@ form input {
   transform: translateY(4px);
 }
 
+.message {
+    margin: auto;
+}
+
 .image_container {
     max-width: 500px;
     margin: 60px auto;
+    margin-top: 0px;
 }
 
 img {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+#filenames {
+    float: right;
+    padding-right: 30px;
 }
