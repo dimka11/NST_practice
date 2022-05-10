@@ -39,7 +39,7 @@ def check_file():
 @app.get("/downloadfile/{name}")
 def download_file(name):
     file_path = f'uploads/{name}/final_image.jpg'
-    make_style_transfer(f'uploads/{name}/content.jpg', f'uploads/{name}/style.jpg', 0.75, f'uploads/{name}/final_image.jpg')
+    make_style_transfer(f'uploads/{name}/content.jpg', f'uploads/{name}/style.jpg', 0.01, f'uploads/{name}/final_image.jpg')
     return FileResponse(path=file_path, filename=file_path, media_type='image/jpg')
 
 

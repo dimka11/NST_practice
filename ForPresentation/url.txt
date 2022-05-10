@@ -1,0 +1,11 @@
+https://blog.tensorflow.org/2020/04/optimizing-style-transfer-to-run-on-mobile-with-tflite.html
+
+https://github.com/magenta/magenta/tree/main/magenta/models/arbitrary_image_stylization
+
+1705.06830.pdf
+
+https://www.tensorflow.org/lite/examples/style_transfer/overview
+
+https://datascience.stackexchange.com/questions/24694/is-neural-style-transfer-considered-supervised-or-unsupervised-learning
+
+https://en.wikipedia.org/wiki/Neural_style_transfer
